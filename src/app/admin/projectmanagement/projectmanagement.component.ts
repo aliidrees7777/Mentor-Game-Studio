@@ -34,6 +34,9 @@ export class ProjectmanagementComponent implements OnInit {
 
   projects: DisplayProject[];
 
+  editState: boolean = false;
+  itemToEdit: AddProject;
+
   constructor(public addProjectService: ProjectService, private db: AngularFirestore, private storage: AngularFireStorage) {
 
    }
@@ -50,7 +53,21 @@ export class ProjectmanagementComponent implements OnInit {
    });
 
   }
+
+
+  deleteItem(event, item : AddProject){
+    this.addProjectService.deleteItem(item);
+  }
   
+
+  updateItem(item: AddProject){
+    this.addProjectService.updateItem(item);
+  }
+
+  editItem(event, item : AddProject){
+    this.editState=true;
+    this.itemToEdit=item;
+  }
 
   
   startUpload(event: FileList) {

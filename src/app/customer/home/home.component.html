@@ -4,7 +4,7 @@
         <h1 class="loader-logo"><span class="colored">M</span>ENTOR</h1>
         <div id="progress"></div>
         <h3 class="loader-text">LOADING</h3>
-    </div>
+    </div> 
     
     
     <!-- /// HERO SECTION /// -->
@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-lg-12 col-xl-7 game-card-right">
                         <h2 class="short-hr-left">{{item.name}}</h2>                        
-                        <p class="game-description">{{item.description}} <span class="expand colored strong" data-toggle="modal" data-target="#game1">Read More</span></p>
+                        <p class="game-description">{{item.description}} <span (click)="editItem($event, item)" class="expand colored strong" data-toggle="modal" data-target="#game1">Read More</span></p>
                         <div class="steam-btn">
                             <a href="#">
                                 <i class="fa fa-steam fa-3x"></i>
@@ -136,7 +136,7 @@
                     <!-- Modal -->
                     <div class="modal fade game-modal" id="game1" tabindex="-1" role="dialog" aria-labelledby="scales" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
+                            <div  class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="scales">SWORDS &amp; SCALES</h1>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -146,11 +146,11 @@
                                <div class="modal-body">
                                    <h2 class="short-hr-left">TEAM UP AND FIGHT DRAGONS</h2>
                                    <p>Integer eget diam felis. Quisque et aliquet lectus, et lacinia turpis. Praesent eget pretium orci. Sed vestibulum rutrum volutpat. Curabitur feugiat arcu odio, quis convallis eros laoreet ac.</p>
-                                   <img class="img-fluid" [src]="item.url2" alt="screenshot">
+                                   <img class="img-fluid" [src]="itemToEdit.url2" alt="screenshot">
                                    <br>
                                    <h2 class="short-hr-left">MAKE FRIENDS</h2>
                                    <p>Suspendisse ultricies, dui vitae convallis blandit, ipsum sem mattis diam, in egestas arcu lacus sed lectus. Donec at interdum tellus. Quisque pellentesque a felis et rutrum. Donec condimentum magna sit amet viverra convallis. Fusce accumsan efficitur orci a commodo.</p>
-                                   <img class="img-fluid" [src]="item.url3" alt="screenshot">
+                                   <img class="img-fluid" [src]="itemToEdit.url3" alt="screenshot">
                                    <br>
                                    <h2 class="short-hr-left">TRAIN YOUR DRAGON</h2>
                                    <p>Mauris at sapien nibh. Integer id tellus vitae ante cursus pharetra. Vestibulum ultrices eleifend enim, quis maximus nibh dapibus in. Phasellus lacinia nec leo at semper. Duis nisl odio, lacinia quis dui at, pretium tincidunt metus. Maecenas condimentum purus sit amet neque maximus tempor. Proin eros massa, ullamcorper eget rutrum eu, feugiat id purus.</p>

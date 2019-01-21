@@ -10,14 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class UsermanagementComponent implements OnInit {
 
   users: AppUser[];
-  editState: boolean = false;
-  itemToEdit: AppUser;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
 
     this.userService.getuser().subscribe( items=> {
+      console.log(items);
       this.users=[];
     items.forEach(element=>{
   
@@ -27,38 +26,10 @@ export class UsermanagementComponent implements OnInit {
   });
   }
 
-  /* changeType(user, event) {
-    // console.log(user); // Get the user
-    // console.log(event.target.checked); // check if
-    this.userService.changeType(user, event.target.checked);
-    // document.getElementById('onoffswitch').checked;
-  } */
-
-  /* deleteItem(event, item ){
-    this.userService.deleteItem(item);
-  } */
-
-
-
-
-  clearState(){
-    this.editState=false;
-    this.itemToEdit=null;
+  
+  isAdmin(item: AppUser){
+    this.userService.isAdmin(item);
   }
 
-  deleteItem(event, item : AppUser){
-    this.clearState();
-    this.userService.deleteItem(item);
-  }
- 
-  editItem(event, item : AppUser){
-    this.editState=true;
-    this.itemToEdit=item;
-  }
-
-  updateItem(item: AppUser){
-    this.userService.updatesItem(item);
-    this.clearState();
-  }
 
 }

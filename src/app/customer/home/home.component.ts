@@ -1,4 +1,4 @@
-import { DisplayProject } from './../../models/appuser';
+import { DisplayProject, AddProject } from './../../models/appuser';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -9,7 +9,9 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class HomeComponent implements OnInit {
 
-  projects: DisplayProject[];
+  projects: DisplayProject[];  
+  editState: boolean = false;
+  itemToEdit: AddProject;
 
   constructor(public addProjectService: ProjectService) { }
 
@@ -23,6 +25,11 @@ export class HomeComponent implements OnInit {
       this.projects.push( element as DisplayProject );
     });
     });
+  }
+
+  editItem(event, item : AddProject){
+    this.editState=true;
+    this.itemToEdit=item;
   }
 
 }

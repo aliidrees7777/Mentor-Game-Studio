@@ -61,9 +61,46 @@
   
               
               <td>
-                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a>
-                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                <a href="#editEmployeeModal" (click)="editItem($event, item)" class="edit" data-toggle="modal"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a>
+                <i  (click)="deleteItem($event, item)" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i>
               </td>
+
+              <!-- Edit Modal HTML -->
+              <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <form (ngSubmit)="updateItem(itemToEdit)" >
+                      <div class="modal-header">
+              
+                        <h4 class="modal-title">Update Project</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <div class="modal-body">         
+              
+              <br>
+                        <br>
+                        <div class="form-group">
+                          <label>Name of Project</label>
+                          <input type="text" class="form-control" [(ngModel)]="itemToEdit.name" name="name">
+                          <!-- this is "two way binding" ab jo value input field mein aygi wo seedha yahan se add-item.component.ts ki properties(item+description) mein jaigi -->
+                        </div>
+            
+                        <div class="form-group">
+                          <label>Description</label>
+                          <input type="text" class="form-control" [(ngModel)]="itemToEdit.description" name="description">
+                        </div>
+                        <input type="file" (change)="startUpload($event.target.files)" multiple >
+                        <div>{{ uploadPercent | async }}</div>
+            
+                      <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" value="Update" class="btn btn-success" >
+                      </div>
+              </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </tr>
            
      
@@ -111,58 +148,6 @@
     </div>
   </div>
   
-
-  
-  
-  
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form>
-                <div class="modal-header">
-                  <h4 class="modal-title">Edit Project</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" required></textarea>
-                  </div>
-
-                  <div class="dropzone" 
-                  dropZone
-                  (hovered)="toggleHover($event)"
-                  (dropped)="startUpload($event)"
-                  [class.hovering]="isHovering">
-             
-             
-             
-                  
-                  <div class="file">
-                     <label class="file-label">
-             
-             
-                     <input class="file-input" type="file" (change)="startUpload($event.target.files)">
-             
-                     </label>
-                   </div>
-              </div>
-  
-                </div>
-                <div class="modal-footer">
-                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                  <input type="submit" class="btn btn-info" value="Save">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
         <!-- Delete Modal HTML -->
         <div id="deleteEmployeeModal" class="modal fade">
           <div class="modal-dialog">

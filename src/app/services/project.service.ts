@@ -1,5 +1,5 @@
 import { AddProject } from './../models/appuser';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class ProjectService {
   projectCollection: AngularFirestoreCollection<AddProject>;
   projects: Observable<AddProject[]>
+  projectDoc: AngularFirestoreDocument<AddProject>;
 
   constructor(public afs:AngularFirestore) {
 
@@ -26,11 +27,22 @@ export class ProjectService {
    }
 
   addProject(project: AddProject){
-    this.projectCollection.add(project); 
+    this.projectCollection.add(project);  
   }
 
   getProject(){
     return this.projects;    
+  }
+
+  deleteItem(item : AddProject){
+    this.projectDoc=this.afs.doc(`projects/${item.id}`);
+    this.projectDoc.delete();
+  }
+
+
+  updateItem(item : AddProject){
+    this.projectDoc=this.afs.doc(`projects/${item.id}`);
+    this.projectDoc.update(item);
   }
 
   
